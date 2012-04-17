@@ -1,0 +1,64 @@
+form, .formlike {
+    label {
+        clear: both;
+        color: $light-text-color;
+        display: block;
+        margin-top: 15px;
+    }
+
+    input[type="email"], input[type="text"], input[type="url"], input[type="password"], textarea {
+        width: 290px;
+        background: none repeat scroll 0 0 #fff;
+        border: 1px solid #d5d4d4;
+        @include rounded(2px);
+        color: $light-text-color;
+        min-height: 20px;
+        padding: 4px;
+    }
+
+    button, input {
+        line-height: normal;
+    }
+
+    button, input[type="button"], input[type="submit"], a.button {
+        border: 1px solid #e2e2e2;
+        border-color: #e2e2e2 #b8b8b8 #b8b8b8 #e2e2e2;
+        color: $text-color;
+        display: inline-block;
+        font-size: 14px;
+        font-weight: bold;
+        padding: 5px 20px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+
+        @include transition(all 0.1s linear);
+        @include rounded(1px);
+        @include gradient(#fefefe, #e7e7e7);
+
+        &:hover {
+            cursor: pointer;
+            text-decoration: none;
+            @include gradient(#fefefe, #dadada);
+            @include box_shadow(1px 1px 1px rgba(0, 0, 0, 0.15));
+        }
+
+        &:active {
+            border-color: #b8b8b8 #e2e2e2 #e2e2e2 #b8b8b8;
+            @include gradient(#e7e7e7, #fefefe);
+            @include box_shadow(inset 1px 1px 1px rgba(0, 0, 0, 0.15));
+        }
+
+        &:focus {
+            border-color: $link-color;
+            outline: medium none;
+        }
+
+        &.callout {
+            color: #fff;
+            @include gradient(#1b80b4, #1b80b4);
+            border-color: #419DC5 #116D98 #116D98 #419DC5;
+            @include box_shadow(1px 1px 1px rgba(0, 0, 0, 0.15));
+        }
+    }
+}

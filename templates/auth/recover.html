@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form class="form-horizontal well" method="post" class="" action="/auth/recover" accept-charset="UTF-8">
+   {{ xsrf_form_html|safe }}
+
+   <fieldset>
+     <legend>Recover your Password</legend>
+
+     <div class="control-group {% if errors.email %}error{% endif %}">
+       <label class="control-label" for="email">Email address</label>
+       <div class="controls">
+         <input type="text" class="input-xlarge" id="email" name="email" value="{{ email }}"/>
+         {% if errors.email %}<span class="help-inline">{{ errors.email.0 }}</span>{% endif %}
+       </div>
+     </div>
+
+     <div class="form-actions">
+       <button type="submit" class="btn btn-primary">Send Recovery</button>
+     </div>
+   </fieldset>
+</form>
+{% endblock %}

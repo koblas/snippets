@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+<div class="auth panel">
+ <h1 class="allcaps">Reset Your Password</h1>
+ <p><strong>Create a new password for your account.</strong></p>
+ <p>If you hava problem resetting your password, please contact <a href="#">support</a>.</p>
+
+ <form method="post" class="website" action="/auth/recover" accept-charset="UTF-8">
+  {{ xsrf_form_html|safe }}
+  <label for="email">Email Address</label>
+  <input type="email" disabled="disabled" name="email" value="{{ email }}">
+  <label for="password">Choose Password</label>
+  <input type="password" name="password">
+  <div class="row">
+   <button type="submit" class="alignLeft">Reset Password</button>
+   <div class="clear"></div>
+  </div>
+ </form>
+</div>
+{% endblock %}

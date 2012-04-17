@@ -1,0 +1,12 @@
+{% extends "base_about.html" %}
+
+{% block content %}
+<h3>What is this?</h3>
+<p>This site grew out of a need to scratch an itch. The Django community is incredibly friendly and helpful, and more than willing to share useful bits of code, but there had never been a place to do that easily. There's a "cookbook" section on the Django wiki, but by its nature that's hard to keep organized -- every time someone adds something they have to remember to go back and update one or more pages which list the bits of code posted there. And lots of people post things on their blogs, but again it's hard to organize that because you need to maintain a huge list of bookmarks and lists of blogs.</p>
+<p>I knew there was a "snippets" application built with Ruby on Rails, and that a couple of communities were using it (<a href="http://snippets.dzone.com/">for example</a>), and figured it wouldn't be too hard to build something similar with Django. So I sat down one Saturday afternoon, and by that evening I had most of the code. Then, at PyCon 2007, I showed the site around and finally launched it.</p>
+<h3>What was that about code?</h3>
+<p>This site is as open-source as reasonably possible. The bulk of the functionality is in a single application I've called "Cab" (named for <a href="http://en.wikipedia.org/wiki/Cab_Calloway">Cab Calloway</a>, whose "scat" style seemed a good fit for a site featuring lots of snippets of code), and is available under a BSD license; the source is hosted as <strike><a href="http://code.google.com/p/cab/">a Google Code project</a></strike> <a href="http://github.com/django-de/djangosnippets.org/">a Github repo</a> if you'd like to go play with or use it.</p>
+<p>The user-registration code is also available, as <a href="http://code.google.com/p/django-registration/">a separate application</a>.</p>
+<h3>I have more questions!</h3>
+<p>Check out the <a href="/about/faq/">FAQ</a>, and hopefully I've answered them there :)</p>
+{% endblock %}

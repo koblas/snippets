@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+
+{% block title %}{{ snippet.title }}{% endblock %}
+
+{% block content_header %}{{ snippet.title }}{% endblock %}
+
+{% block content %}
+  <h1>{{ snippet.title }}</h1>
+
+  <div class="row-fluid">
+    <div class="show_votes span1">
+      <a class="vote_up" href="#"><span class="arrow-up"></span></a>
+      <div class="counts">{{ snippet.vote_count }}</div>
+      <a class="vote_down" href="#"><span class="arrow-down"></span></a>
+    </div>
+
+    <div class="span11">
+      <div>
+        {{ snippet.description_html|safe }}
+      </div>
+      <pre class="prettyprint linenums">
+{{ snippet.code }}
+      </pre>
+
+      <h2>Comments</h2>
+
+        {% for comment in snippet.comments %}
+          <div class="comment">
+            <div class="clearfix hdr">
+              <div class="pull-left author"><img width="18" height="18" src="{{ comment.author.profile.icon30 }}"/> <a href="{{ comment.author.profile.url }}">{{ comment.author.name }}</a></div>
+              <div class="date pull-right">{{ comment.pub_date|timesince }} ago</div>
+            </div>
+            <div class="content">{{ comment.content }}</div>
+          </div>
+        {% endfor %}
+
+      {% if current_user %}
+        <form class="" method="post" class="" autocomplete="off" action="/snippets/{{ snippet.guid }}/comment" accept-charset="UTF-8">
+          {{ xsrf_form_html|safe }}
+
+          <fieldset>
+            <legend>Add Comment</legend>
+            <div class="control-group {% if errors.comment %}error{% endif %}">
+              <label class="control-label" for="comment"></label>
+              <div class="controls">
+                <textarea class="span7" id="comment" name="comment"></textarea>
+                {% if errors.comment %}<span class="help-inline">{{ errors.comment.0 }}</span>{% endif %}
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">Add Comment</button>
+            </div>
+          </fieldset>
+        </form>
+      {% else %}
+        <h4>You must be logged in to comment</h4>
+      {% endif %}
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block sidebar %}
+   <div class="vcard small">
+     <img class="photo" width="30" height="30" src="{{ snippet.author.profile.icon30 }}">
+     <div class="created">Created by <a class="url fn" href="/users/{{ snippet.author.guid }}/">{{ snippet.author.name }}</a>
+       <br/>on {{ snippet.pub_date|strftime:"%B %e, %Y" }}
+     </div>
+   </div>
+
+  <div class="well">
+    <ul class="nav nav-list">
+      <li class="nav-header">Tools</li>
+  {% if current_user and current_user.guid == snippet.author.guid %}
+      <li class=""><a href="/snippets/{{ snippet.guid }}/edit/"><i class="icon-edit"></i> Edit</a></li>
+  {% endif %}
+      <li class=""><a href="/snippets/{{ snippet.guid }}/download/"><i class="icon-download"></i> Download</a></li>
+      <li class=""><a href="#"><i class="icon-comment"></i> Comment</a></li>
+    </ul>
+  </div>
+
+  <dl>
+    {% if snippet.tags %}
+      <dt>Tags:</dt>
+      <dd>
+        {% for tag in snippet.tags %}
+          <a class="btn btn-mini" href="{{ tag.get_absolute_url }}">{{ tag.name }}</a>
+        {% endfor %}
+      </dd>
+    {% endif %}
+  </dl>
+{% endblock %}
+
+{% block extra_content %}
+  <div id="comments">
+    <h2>Comments</h2>
+{% comment %}
+    {% load comments %}
+    {% get_comment_list for snippet as comment_list %}
+    <dl>
+    {% for comment in comment_list %}
+      <dt id="c{{ comment.id }}"><a href="/users/{{ comment.user.username }}/">{{ comment.user.username }}</a> (on {{ comment.submit_date|strftime:"%B %e, %Y" }}):</dt>
+      <dd>{{ comment.comment|safe_markdown:"safe"|safe }}
+      <p><a href="{{ comment.get_absolute_url }}">#</a></p></dd>
+    {% endfor %}
+    </dl>
+    {% render_comment_form for snippet %}
+{% endcomment %}
+  </div>
+{% endblock %}
+
+{% block footerscript %}
+<script>
+$(document).ready(function() {
+    prettyPrint();
+    setTimeout(function() { $.get("/snippets/view/{{ snippet.guid }}"); }, 500);
+});
+
+function handle_vote(val) {
+    $.ajax({
+        url: "/snippets/vote/{{ snippet.guid }}", 
+        data: { vote : val }, 
+        dataType: 'json',
+        success: function(data) {
+            $('.show_votes .counts').text(data.count);
+        }
+    });
+}
+
+$('.vote_up').click(function () { handle_vote(1) });
+$('.vote_down').click(function () { handle_vote(-1) });
+</script>
+{% endblock %}

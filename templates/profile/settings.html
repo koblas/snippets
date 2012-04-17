@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Notifcation Settings{% endblock %}
+
+{% block content %}
+<div class="row-fluid">
+  <div class="span3">
+    {% include "profile/_nav.html" with active="settings" %}
+  </div>
+
+  <div class="span9">
+    <form class="form-horizontal well" method="post" class="" action="{{ request.path }}" accept-charset="UTF-8">
+      {{ xsrf_form_html|safe }}
+
+      <fieldset>
+        <legend>Account Settings</legend>
+
+        <div class="control-group {% if errors.email %}error{% endif %}">
+          <label class="control-label" for="email">Email Address</label>
+          <div class="controls">
+            <input type="text" class="input-xlarge" id="email" name="email" value="{{ email }}"/>
+            {% if errors.email %}<span class="help-inline">{{ errors.email.0 }}</span>{% endif %}
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+      </fieldset>
+    </form>
+
+  </div>
+</div>
+{% endblock %}

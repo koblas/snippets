@@ -1,0 +1,35 @@
+{% extends "base_about.html" %}
+
+{% block content %}
+<h3>Who did this?</h3>
+<p>The backend code was written by me -- <a href="http://www.b-list.org/">James Bennett</a> -- and the design was done by <a href="http://www2.jeffcroft.com/">Jeff Croft</a>.</p>
+<p><em>note:</em> The site was ported to 1.1 and is currently maintained by <a href="http://djangosnippets.org/about/legal/">Deutscher Django Verein e.V.</a></p>
+<h3>Why did you build this site?</h3>
+<p>Because it seemed like a good idea. Up until now, finding useful bits of Django-related code has been a bit of a pain, because code is scattered across the Django wiki and various peoples' blogs. I'm hoping that this site will make that easier by providing a simple way to post and organize cool pieces of code.</p>
+<h3>So... it's a pastebin?</h3>
+<p>Not really. The Django community already has a pastebin at <a href="http://dpaste.com/">dpaste.com</a> (courtesy of <a href="http://e-scribe.com/">Paul Bissex</a>), and that's useful when you need to temporarily have someone look at a piece of code (since pastebin apps generally "expire" their entries after a while). This site's geared more at putting finished pieces of code up for posterity.</p>
+<h3>Can I have the code?</h3>
+<p>Sure. This site runs off two applications I've developed, both of which are open source and hosted on <strike>Google Code: <a href="http://code.google.com/p/cab/">Cab</a></strike> Github: <a href="http://github.com/django-de/djangosnippets.org/">djangosnippets.org repo</a> is the snippets application itself, and <a href="http://code.google.com/p/django-registration/">django-registration</a> handles the user-registration part. It's all under the same BSD license as Django itself, so feel free to grab the code and do what you like with it.</p>
+<h3>Why does your search rock so hard?</h3>
+<p>It's on the house-rocking <a href="http://haystacksearch.org/">haystack</a>.</p>
+<h3>I never got my registration email!</h3>
+<p>Your mail server probably ate it; I've been getting all sorts of crazy bounce messages from overzealous spam filters since taking the site live. If you don't get the email within 24 hours of signing up, ping me in #django, I'm <code>cleifer</code>.</p>
+<h3>I found a bug!</h3>
+<p>If you spot a bug, use the issues system on Github (see above) to report it, and I'll do my best to fix it right away.</p>
+<h3>What license are the code snippets under?</h3>
+<p>No particular license; everyone who signs up agrees to the <a href="/about/tos/">Terms of Service</a> which simply state that code they post can be used by anyone in any way.</p>
+<h3>Can I use the design of this site?</h3>
+<p>No. I didn't design this site. <a href="http://www2.jeffcroft.com/">Jeff</a> did, and I wouldn't feel good about giving away his hard work.</p>
+<h3>Why do you allow snippets in languages other than Python?</h3>
+<p>Because there's more to Django than Python; you need templates with a mix of tags and HTML, you often want some JavaScript and every once in a while you need to drop down to SQL for a custom query. So this site will accept snippets in any of those languages.</p>
+<p>The snippets application the site runs on lets an administrator choose the exact set of languages, so if you'd like something different you can always grab the code and install it on your own site.</p>
+<h3>How do you do the code highlighting?</h3>
+<p>Using an extremely cool Python highlighting library called <a href="http://pygments.org/">Pygments</a>. It's pretty much the best thing ever.</p>
+<h3>Why do I have to have an account to do so many things?</h3>
+<p>Because it makes the site easier to run :)</p>
+<p>Requiring an account makes the bookmarking features possible and makes things like ratings ever so much easier. And requiring an account to comment goes a long way toward fighting spam. And I've done my best to make <a href="/accounts/register/">signing up</a> as easy as possible, so hopefully it won't get in the way too much.</p>
+<h3>Why can't I see other peoples' bookmarks?</h3>
+<p>Because I never got around to implementing it. There's some cool stuff in the bookmarking code that I'll expose once the site really gets going, and I may add viewing other users' bookmarks in there when I do. But bookmarking is primarily so that <em>you</em> can keep track of snippets you liked, and you can already see a list of the <a href="/popular/bookmarked/">most-bookmarked snippets</a>, so I'm not sure it'd add much.</p>
+<h3>I have a question you didn't answer!</h3>
+<p>Feel free to ping me on IRC (I'm pretty much always in the Django IRC channel, signed on as "cleifer"), and I'll do my best to answer whatever's on your mind.</p>
+{% endblock %}

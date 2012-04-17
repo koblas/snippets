@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}All snippets{% if months %} last {{ months }} months{% endif %}{% endblock %}
+
+{% block content_header %}All snippets{% if months %} last {{ months }} months{% endif %}{% endblock %}
+
+{% block content %}
+  <ul class="nav nav-pills">
+    <li{% if not months %} class="active"{% endif %}><a href="{{ request.path }}">Any time</a></li>
+    <li{% if months == 3 %} class="active"{% endif %}><a href="{{ request.path }}?months=3">3 months</a></li>
+    <li{% if months == 6 %} class="active"{% endif %}><a href="{{ request.path }}?months=6">6 months</a></li>
+    <li{% if months == 12 %} class="active"{% endif %}><a href="{{ request.path }}?months=12">1 year</a></li>
+  </ul>
+
+  {% if page.paginator.count %}
+    <div class="snippet_list">
+      <h1>{% block list_title %}{% endblock %}</h1>
+    {% for snippet in page.object_list %}
+      {% include "snippet/_snippet_item.html" %}
+      <div class="summary row-fluid">
+        <div class="span1 votes">
+          <div class="mini_counts">{{ snippet.vote_count }}</div>
+          <div>votes</div>
+        </div>
+        <div class="span1 views">
+          <div class="mini_counts">{{ snippet.views }}</div>
+          <div>views</div>
+        </div>
+        <div class="span8">
+          <h3><a href="{{ snippet.get_absolute_url }}">{{ snippet.title }}</a></h3>
+          <div class="">
+            <div class="pull-left">
+            {% for tag in snippet.tags %}
+              <a class="btn btn-mini" href="{{ tag.get_absolute_url }}">{{ tag.name }}</a>
+            {% endfor %}
+            </div>
+            <div class="pull-right">
+              {{ snippet.pub_date|timesince }} ago, 
+              <a href="/users/{{ snippet.author.guid }}">{{ snippet.author.name }}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+
+    <ul class="pager">
+      {% if page.has_previous %}
+        <li class="previous"><a href="?page={{ page.previous_page_number }}{% if months %}&months={{ months }}{% endif %}">&larr; Previous {{ page.per_page }}</a></li>
+      {% endif %}
+      {% if page.has_next %}
+        <li class="next"><a href="?page={{ page.next_page_number }}{% if months %}&months={{ months }}{% endif %}">Next {{ page.per_page }} &rarr;</a></li>
+      {% endif %}
+    </p>
+  {% else %}
+    <p class="empty">No snippets posted yet.</p>
+  {% endif %}
+
+{% endblock %}
+
+{% block sidebar %}
+  <p>{{ hits }} snippet{{ hits|pluralize }} posted so far.</p>
+  <p><a rel="alternate" href="/feeds/latest/" type="application/atom+xml"><img src="{{ handler.settings.static_url }}img/feed-icon-10x10.gif" alt="" /> Feed of latest snippets</a></p>
+{% endblock %}

@@ -1,0 +1,105 @@
+.vcard {
+    .small {
+        margin-bottom: 8px;
+    }
+    .created {
+        position: relative;
+        top: 1px;
+        padding-left: 35px;
+    }   
+    .photo {
+        display: block;
+        float: left;
+    }
+}
+
+.snippet_list {
+    h1 {
+        border-bottom: 1px solid #999;
+        padding-bottom: 4px;
+    }
+
+    .mini_counts {
+        height: 25px;
+        font-size: 190%;
+        font-weight: bold;
+    }
+
+    .votes, .snippet_list .views {
+        text-align: center;
+    }
+
+    .summary {
+        border-bottom: 1px dotted #999;
+        padding: 11px 0;
+    }
+}
+
+.arrow-up {
+    width: 0;
+    height: 0;
+    border-left:   12px solid transparent;
+    border-right:  12px solid transparent;
+    border-bottom: 12px solid #999;
+    display: inline-block;
+    &:hover {
+        border-bottom: 12px solid #f90;
+    }
+}
+
+.arrow-down {
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 12px solid #999;
+    display: inline-block;
+    &:hover {
+        border-top: 12px solid #f90;
+    }
+}
+
+.show_votes {
+    margin-top: 8px;
+    text-align: center;
+    .counts {
+        font-size: 240%;
+        color: #333;
+    }
+    .arrow-up {
+        margin-bottom: 2px;
+    }
+    .arrow-down {
+        margin-top: 8px;
+    }
+}
+
+h1.search_header {
+    border-bottom: 1px solid #999;
+    margin-bottom: 8px;
+}
+
+.comment {
+    margin-bottom: 8px;
+    border: 1px solid #ccc;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+
+    .hdr {
+        background-color: #eee;
+        padding: 8px;
+    }
+
+    .date {
+        color: #999;
+    }
+    .author {
+        font-size: 110%;
+    }
+    .content {
+        padding: 20px;
+        margin-top: 8px;
+        font-size: 120%;
+    }
+}

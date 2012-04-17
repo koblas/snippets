@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Profile Settings{% endblock %}
+
+{% block content %}
+
+<div class="row-fluid">
+  <div class="span3">
+    {% include "profile/_nav.html" with active="profile" %}
+  </div>
+
+  <div class="span9">
+    <form class="form-horizontal well" method="post" class="" action="{{ request.path }}" accept-charset="UTF-8">
+      {{ xsrf_form_html|safe }}
+
+      <fieldset>
+        <legend>Account Settings</legend>
+
+        <div class="control-group {% if errors.first_name %}error{% endif %}">
+          <label class="control-label" for="first_name">First Name</label>
+          <div class="controls">
+            <input type="text" class="input-xlarge" id="first_name" name="first_name" value="{{ first_name }}"/>
+            {% if errors.first_name %}<span class="help-inline">{{ errors.first_name.0 }}</span>{% endif %}
+          </div>
+        </div>
+
+        <div class="control-group {% if errors.last_name %}error{% endif %}">
+          <label class="control-label" for="last_name">Last Name</label>
+          <div class="controls">
+            <input type="text" class="input-xlarge" id="last_name" name="last_name" value="{{ last_name }}"/>
+            {% if errors.last_name %}<span class="help-inline">{{ errors.last_name.0 }}</span>{% endif %}
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+      </fieldset>
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}All users{% endblock %}
+
+{% block content_header %}All users{% endblock %}
+
+{% block nav_user_active %}active{% endblock %}
+
+{% block content %}
+  <h1 class="search_header">Users</h1>
+
+  <ul>
+  {% for user in users %}
+    <li class="vcard small" style="list-style-type: none; margin-left: 0">
+      <img class="photo" width="70" height="70" src="{{ user.profile.icon70 }}">
+      <div style="margin-left: 82px"><a href="/users/{{ user.guid }}/">{{ user.name }}</a></div>
+    </li>
+  {% endfor %}
+  </ul>
+
+  <p class="pagination">{% if has_previous %}<a href="?page={{ previous }}">&lt; Previous {{ results_per_page }}</a>{% endif %}&nbsp;&nbsp;{% if has_next %}<a href="?page={{ next }}">Next {{ results_per_page }} &gt;</a>{% endif %}</p>
+{% endblock %}
+
+{% block sidebar %}
+  <p>There are currently {{ hits }} users posting snippets.</p>
+
+  <p>The users who've submitted the most snippets are:</p>
+{% comment %}
+  {% load popular %}
+  {% get_top_authors 5 as top_authors %}
+  <ol>
+  {% for author in top_authors %}
+    <li><a href="/users/{{ author.username }}/">{{ author.username }}</a></li>
+  {% endfor %}
+  </ol>
+{% endcomment %}
+{% endblock %}
