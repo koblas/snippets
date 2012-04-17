@@ -1,0 +1,10 @@
+{% extends "snippet/snippet_list.html" %}
+
+{% block feeds %}<link rel="alternate" href="/feeds/author/{{ author.username }}/" type="application/atom+xml" title="Feed of snippets by {{ author.name }}" />{% endblock %}
+
+{% block title %}Search results  for {{ term }}{% if months %}, last {{ months }} months{% endif %}{% endblock %}
+
+{% block list_title %}Search Results{% endblock %}
+
+{% block sidebar %}
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Create Account{% endblock %}
+
+{% block content %}
+<form class="form-horizontal well" method="post" class="" autocomplete="off" action="/auth/register" accept-charset="UTF-8">
+   {{ xsrf_form_html|safe }}
+   <input type="hidden" name="next" value="{{ next }}"/>
+
+   <fieldset>
+     <legend>Create a free account</legend>
+
+     <div class="control-group {% if errors.firstname %}error{% endif %}">
+       <label class="control-label" for="firstname">First name</label>
+       <div class="controls">
+         <input type="text" class="input-xlarge" id="firstname" name="firstname" value="{{ firstname }}"/>
+         {% if errors.firstname %}<span class="help-inline">{{ errors.firstname.0 }}</span>{% endif %}
+       </div>
+     </div>
+
+     <div class="control-group {% if errors.lastname %}error{% endif %}">
+       <label class="control-label" for="lastname">Last name</label>
+       <div class="controls">
+         <input type="text" class="input-xlarge" id="lastname" name="lastname"/>
+         {% if errors.lastname %}<span class="help-inline">{{ errors.lastname.0 }}</span>{% endif %}
+       </div>
+     </div>
+
+     <div class="control-group {% if errors.email %}error{% endif %}">
+       <label class="control-label" for="email">Email address</label>
+       <div class="controls">
+         <input type="text" class="input-xlarge" id="email" name="email" value="{{ email }}"/>
+         {% if errors.email %}<span class="help-inline">{{ errors.email.0 }}</span>{% endif %}
+       </div>
+     </div>
+
+     <div class="control-group {% if errors.password %}error{% endif %}">
+       <label class="control-label" for="email">Password</label>
+       <div class="controls">
+         <input type="password" class="input-xlarge" id="password" name="password"/>
+         {% if errors.password %}<span class="help-inline">{{ errors.password.0 }}</span>{% endif %}
+       </div>
+     </div>
+
+     <div class="form-actions">
+       <button type="submit" class="btn btn-primary">Sign Up</button>
+     </div>
+   </fieldset>
+</form>
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Log In{% endblock %}
+
+{% block content %}
+<form class="form-horizontal well" method="post" class="" action="/auth/login" accept-charset="UTF-8">
+   {{ xsrf_form_html|safe }}
+   <input type="hidden" name="next" value="{{ nexturl }}"/>
+
+   <fieldset>
+     <legend>Log in to your account</legend>
+
+     <div class="control-group {% if errors.email %}error{% endif %}">
+       <label class="control-label" for="email">Email address</label>
+       <div class="controls">
+         <input type="text" class="input-xlarge" id="email" name="email" value="{{ email }}"/>
+         {% if errors.email %}<span class="help-inline">{{ errors.email.0 }}</span>{% endif %}
+       </div>
+     </div>
+
+     <div class="control-group {% if errors.password %}error{% endif %}">
+       <label class="control-label" for="email">Password</label>
+       <div class="controls">
+         <input type="password" class="input-xlarge" id="password" name="password"/>
+         {% if errors.password %}<span class="help-inline">{{ errors.password.0 }}</span>{% endif %}
+       </div>
+     </div>
+
+     <div class="control-group">
+       <div class="controls">
+         <label class="checkbox">
+           <input type="checkbox" class="input-xlarge" id="password" {% if remember %}checked="checked"{% endif %} name="remember"/>
+           Remember me
+         </label>
+       </div>
+     </div>
+
+     <div class="form-actions">
+       <button type="submit" class="btn btn-primary">Log In</button>
+       <a href="/auth/recover">Forgot Password</a>
+     </div>
+   </fieldset>
+</form>
+
+  <div class="facebook">
+   <h2>Log in with your Facebook Account</h2>
+   <a href="/auth/oa/facebook" class="btn-auth btn-facebook">Log In With Facebook</a>
+   <a href="/auth/oa/google" class="btn-auth btn-google">Log In With Google</a>
+  </div>
+
+{% endblock %}

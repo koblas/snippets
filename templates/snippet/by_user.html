@@ -1,0 +1,24 @@
+{% extends "snippet/snippet_list.html" %}
+
+{% block feeds %}<link rel="alternate" href="/feeds/author/{{ author.username }}/" type="application/atom+xml" title="Feed of snippets by {{ author.name }}" />{% endblock %}
+
+{% block title %}Snippets by {{ author.username }}{% if months %}, last {{ months }} months{% endif %}{% endblock %}
+
+{% block nav_user_active %}active{% endblock %}
+
+{% block list_title %}Snippets by {{ author.name }}{% endblock %}
+
+{% block sidebar %}
+  <p>{% if current_user == author %}You've{% else %}{{ author.name }} has{% endif %} posted {{ author_count }} snippet{{ author_count|pluralize }}.</p>
+
+  <p><a rel="alternate" href="/feeds/author/{{ author.guid }}/" type="application/atom+xml"><img src="{{ handler.settings.static_url }}img/feed-icon-10x10.png" alt="" /> Feed of snippets by {{ author.name }}</a></p>
+
+  <p>The users who've submitted the most snippets are:</p>
+  <ol>
+{% comment %}
+  {% for author in "cab.snippet"|call_manager:"top_authors"|slice:":5" %}
+    <li><a href="/users/{{ author.username }}/">{{ author.username }}</a></li>
+  {% endfor %}
+{% endcomment %}
+  </ol>
+{% endblock %}

@@ -1,0 +1,24 @@
+  <div class="summary row-fluid">
+    <div class="span1 votes">
+      <div class="mini_counts">{{ snippet.vote_count }}</div>
+      <div>votes</div>
+    </div>
+    <div class="span1 views">
+      <div class="mini_counts">{{ snippet.views }}</div>
+      <div>views</div>
+    </div>
+    <div class="span8">
+      <h3><a href="{{ snippet.get_absolute_url }}">{{ snippet.title }}</a></h3>
+      <div class="">
+        <div class="pull-left">
+        {% for tag in snippet.tags %}
+          <a class="btn btn-mini" href="{{ tag.get_absolute_url }}">{{ tag.name }}</a>
+        {% endfor %}
+        </div>
+        <div class="pull-right">
+          {{ snippet.pub_date|timesince }} ago, 
+          <a href="/users/{{ snippet.author.guid }}">{{ snippet.author.name }}</a>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Notifcation Settings{% endblock %}
+
+{% block content %}
+<div class="row-fluid">
+  <div class="span3">
+    {% include "profile/_nav.html" with active="settings" %}
+  </div>
+
+  <div class="span9">
+    <form class="form-horizontal well" method="post" class="" action="{{ request.path }}" accept-charset="UTF-8" enctype="multipart/form-data">
+      {{ xsrf_form_html|safe }}
+
+      <fieldset>
+        <legend>Profile Photo</legend>
+
+        <div class="control-group {% if errors.image %}error{% endif %}">
+          <label class="control-label" for="image">Picture</label>
+          <div class="controls">
+            <img style="float: left" class="avatar size73" src="{{ current_user.profile.icon70 }}"/>
+            <div style="margin-left: 82px" class="uploader-tools">
+              <input type="file" class="input-file" id="image" name="image"/>
+              <p>Maximum size of 700k. JPG, GIF, PNG.</p>
+            </div>
+            {% if errors.image %}<span class="help-inline">{{ errors.image.0 }}</span>{% endif %}
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+
+      </fieldset>
+    </form>
+
+  </div>
+</div>
+{% endblock %}

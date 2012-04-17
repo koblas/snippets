@@ -1,0 +1,2 @@
+Inspired by djangosnippet.org
+

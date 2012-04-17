@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block bodyclass %}account{% endblock %}
+
+{% block secondary_nav %}
+{% if current_user %}
+  <li><a href="/users/{{ current_user.guid }}/">Your snippets</a></li>
+{% endif %}
+<li><a href="/snippets/add/">Add a snippet</a></li>
+<li><a href="/bookmarks/">Your bookmarks</a></li>
+{% endblock %}
