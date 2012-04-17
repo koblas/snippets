@@ -19,9 +19,11 @@ setup(
     packages=['snippets'],
 
     requires=[
-        'thistle',
+        'git+git://github.com/koblas/thistle.git',
         'tornado',
         'mongoengine',
+        'importlib'
+        'PIL'
         'PyYAML',
     ],
 )
